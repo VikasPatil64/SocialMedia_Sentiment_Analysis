@@ -5,7 +5,7 @@ import nltk
 nltk.download("vader_lexicon")
 
 # Load cleaned comments
-df = pd.read_csv("data/youtube_comments_cleaned.csv")
+df = pd.read_csv("data/cleaned_yt_comments.csv")
 
 # 🔹 Drop empty or NaN comments before sentiment analysis
 df = df.dropna(subset=["cleaned_comment"])
@@ -46,5 +46,5 @@ for i, row in df.iterrows():
     print("-" * 50)
     
 # Save results
-df.to_csv("data/youtube_comments_sentiment.csv", index=False)
-print("Sentiment analysis done! Results saved in youtube_comments_sentiment.csv")
+df.to_csv("data/sentiments_yt_comments.csv", index=False)
+print("Sentiment analysis done! Results saved in sentiments_yt_comments.csv")

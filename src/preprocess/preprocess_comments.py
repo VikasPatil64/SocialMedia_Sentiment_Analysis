@@ -3,7 +3,7 @@ import re
 from nltk.corpus import stopwords
 
 # Load saved comments
-df = pd.read_csv("data/youtube_comments.csv")
+df = pd.read_csv("data/yt_comments.csv")
 
 # Download stopwords first (if not done yet)
 import nltk
@@ -22,5 +22,5 @@ def clean_comment(text):
 df["cleaned_comment"] = df["comment"].apply(clean_comment)
 
 # Save cleaned comments
-df.to_csv("data/youtube_comments_cleaned.csv", index=False)
+df.to_csv("data/cleaned_yt_comments.csv", index=False)
 print("Cleaned comments saved!")

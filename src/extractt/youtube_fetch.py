@@ -46,5 +46,5 @@ if not os.path.exists("data"):
     os.makedirs("data")
 # After fetching comments
 df = pd.DataFrame(comments, columns=["comment"])
-df.to_csv("data/youtube_comments.csv", index=False)
-print(f"\nSaved {len(df)} comments to data/youtube_comments.csv")
+df.to_csv("data/yt_comments.csv", index=False)
+print(f"\nSaved {len(df)} comments to data/yt_comments.csv")
