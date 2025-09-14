@@ -44,7 +44,27 @@ for i, row in df.iterrows():
     print(f"{color}Comment: {row['cleaned_comment']}")
     print(f"Sentiment: {sentiment}{Style.RESET_ALL}")
     print("-" * 50)
-    
 # Save results
 df.to_csv("data/sentiments_yt_comments.csv", index=False)
 print("Sentiment analysis done! Results saved in sentiments_yt_comments.csv")
+
+# --- New Part: Count summary ---
+summary = (
+    df.groupby("sentiment")
+    .size()
+    .reset_index(name="count")
+)
+
+print("\nSentiment Count Summary:")
+print(summary.to_string(index=False))
+
+# Create summary counts of sentiments per video (if video_id available)
+summary = df.groupby("sentiment").size().reset_index(name="count")
+
+# Save summary to CSV
+summary_file = "data/sentiment_summary.csv"
+summary.to_csv(summary_file, index=False)
+
+print(f"\nSentiment summary saved to {summary_file}")
+print(summary)
+
