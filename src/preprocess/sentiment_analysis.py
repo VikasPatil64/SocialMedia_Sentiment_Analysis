@@ -7,7 +7,7 @@ nltk.download("vader_lexicon")
 # Load cleaned comments
 df = pd.read_csv("data/cleaned_yt_comments.csv")
 
-# 🔹 Drop empty or NaN comments before sentiment analysis
+# Drop empty or NaN comments before sentiment analysis
 df = df.dropna(subset=["cleaned_comment"])
 
 sia = SentimentIntensityAnalyzer()
@@ -29,7 +29,7 @@ def get_sentiment(text):
 # Apply sentiment analysis
 df["sentiment"] = df["cleaned_comment"].apply(get_sentiment)
 
-# Print each comment with color-coded sentiment (add this snippet here)
+# Print each comment with color-coded sentiment
 from colorama import Fore, Style
 
 for i, row in df.iterrows():
@@ -48,7 +48,7 @@ for i, row in df.iterrows():
 df.to_csv("data/sentiments_yt_comments.csv", index=False)
 print("Sentiment analysis done! Results saved in sentiments_yt_comments.csv")
 
-# --- New Part: Count summary ---
+# --- Count summary ---
 summary = (
     df.groupby("sentiment")
     .size()
