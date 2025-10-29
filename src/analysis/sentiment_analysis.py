@@ -1,6 +1,9 @@
 import pandas as pd
 from nltk.sentiment import SentimentIntensityAnalyzer
 import nltk
+from tqdm import tqdm
+tqdm.pandas()  # enables progress bar for apply()
+
 
 nltk.download("vader_lexicon")
 
@@ -27,7 +30,8 @@ def get_sentiment(text):
 
 
 # Apply sentiment analysis
-df["sentiment"] = df["cleaned_comment"].apply(get_sentiment)
+df["sentiment"] = df["cleaned_comment"].progress_apply(get_sentiment)
+
 
 # Print each comment with color-coded sentiment
 from colorama import Fore, Style
